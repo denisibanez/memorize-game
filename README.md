@@ -86,7 +86,7 @@ src/
 ## 👤 Author
 
 - **Denis Ibanez**
-- [LinkedIn]([https://www.linkedin.com/](https://www.linkedin.com/in/denis-ibanez/))
+- [LinkedIn]([https://www.linkedin.com/](https://www.linkedin.com/in/denis-ibanez/])
 
 ---
 
