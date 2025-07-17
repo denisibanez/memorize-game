@@ -1,5 +1,6 @@
-'use client';
-import React from 'react';
+"use client";
+import React from "react";
+import Image from "next/image";
 
 interface CardProps {
   image: string;
@@ -24,28 +25,46 @@ export default function Card({ image, flipped, matched, onClick }: CardProps) {
     >
       <div
         className={`relative w-full h-full transition-transform duration-300 ${
-          flipped || matched ? 'rotate-y-180' : ''
+          flipped || matched ? "rotate-y-180" : ""
         }`}
-        style={{ transformStyle: 'preserve-3d' }}
+        style={{ transformStyle: "preserve-3d" }}
       >
         {/* Frente (imagem) */}
         <div
-          className={`absolute w-full h-full backface-hidden rounded-md overflow-hidden border bg-[#23243a] flex items-center justify-center ${matched ? 'border-purple-400' : 'border-cyan-400'}`}
-          style={{ transform: 'rotateY(180deg)' }}
+          className={`absolute w-full h-full backface-hidden rounded-md overflow-hidden border bg-[#23243a] flex items-center justify-center ${matched ? "border-purple-400" : "border-cyan-400"}`}
+          style={{ transform: "rotateY(180deg)" }}
         >
-          <img
+          <Image
             src={image}
             alt="Memory Card"
+            width={120}
+            height={120}
             className="object-cover w-full h-full rounded-md p-1"
           />
         </div>
         {/* Verso */}
-        <div className={`absolute w-full h-full backface-hidden rounded-md bg-[#18192a] border flex items-center justify-center hover:border-cyan-300 transition-colors ${matched ? 'border-purple-400' : 'border-cyan-400'}` }>
+        <div
+          className={`absolute w-full h-full backface-hidden rounded-md bg-[#18192a] border flex items-center justify-center hover:border-cyan-300 transition-colors ${matched ? "border-purple-400" : "border-cyan-400"}`}
+        >
           <svg width="40" height="40" viewBox="0 0 48 48" fill="none">
-            <circle cx="24" cy="24" r="22" stroke="url(#grad1)" strokeWidth="4" fill="url(#grad2)" />
+            <circle
+              cx="24"
+              cy="24"
+              r="22"
+              stroke="url(#grad1)"
+              strokeWidth="4"
+              fill="url(#grad2)"
+            />
             <path d="M24 14L32 34H16L24 14Z" fill="url(#grad1)" />
             <defs>
-              <linearGradient id="grad1" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse">
+              <linearGradient
+                id="grad1"
+                x1="0"
+                y1="0"
+                x2="48"
+                y2="48"
+                gradientUnits="userSpaceOnUse"
+              >
                 <stop stopColor="#67e8f9" />
                 <stop offset="1" stopColor="#a78bfa" />
               </linearGradient>
@@ -59,4 +78,4 @@ export default function Card({ image, flipped, matched, onClick }: CardProps) {
       </div>
     </div>
   );
-} 
+}

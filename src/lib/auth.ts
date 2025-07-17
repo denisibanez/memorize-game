@@ -1,5 +1,5 @@
-import GoogleProvider from 'next-auth/providers/google';
-import { AuthOptions } from 'next-auth';
+import GoogleProvider from "next-auth/providers/google";
+import { AuthOptions } from "next-auth";
 
 export const authOptions: AuthOptions = {
   providers: [
@@ -9,7 +9,7 @@ export const authOptions: AuthOptions = {
     }),
   ],
   session: {
-    strategy: 'jwt',
+    strategy: "jwt",
   },
   secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
@@ -19,13 +19,15 @@ export const authOptions: AuthOptions = {
       }
       return session;
     },
-    async jwt({ token, user, account, profile }) {
+    async jwt({ token, profile }) {
       if (profile) {
         // Google normalmente retorna 'picture', mas pode ser 'avatar_url' ou 'image' em outros provedores
-        const anyProfile = profile as any;
-        token.picture = (anyProfile.picture || anyProfile.avatar_url || anyProfile.image) as string;
+        const prof = profile as Record<string, unknown>;
+        token.picture = (prof.picture ||
+          prof.avatar_url ||
+          prof.image) as string;
       }
       return token;
     },
   },
-}; 
+};
