@@ -1,11 +1,12 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import Card from "./Card";
-import Timer from "./Timer";
+import Card from "@/components/Game/Card/Card";
+import Timer from "@/components/Game/Timer/Timer";
 import { useSession } from "next-auth/react";
-import HighScoresModal from "../Scores/HighScoresModal";
+import HighScoresModal from "@/components/Scores/HighScoresModal/HighScoresModal";
 import ConfettiExplosion from "react-confetti-explosion";
-import VictoryOverlay from "../Game/VictoryOverlay";
+import VictoryOverlay from "@/components/Game/VictoryOverlay/VictoryOverlay";
+import MemorizerLoading from "@/components/Common/MemorizerLoading/MemorizerLoading";
 
 interface CardType {
   id: number;
@@ -50,7 +51,7 @@ export default function GameBoard({
   const [victory, setVictory] = useState(false);
   const [victoryTime, setVictoryTime] = useState<number | null>(null);
 
-  // Seed para as imagens dos cards, só no client
+  // Seed for card images, client only
   const [baseSeed, setBaseSeed] = useState<string | null>(null);
 
   useEffect(() => {
@@ -155,10 +156,14 @@ export default function GameBoard({
   }
 
   if (loading || !baseSeed) {
-    return <div className="text-white">Carregando cartas...</div>;
+    return (
+      <div className="flex justify-center items-center w-full h-full">
+        <MemorizerLoading />
+      </div>
+    );
   }
 
-  // Pega os scores do localStorage para passar para o Timer
+  // Get scores from localStorage to pass to Timer
   let scores: number[] = [];
   if (typeof window !== "undefined") {
     type Score = { name: string; time: number };
@@ -192,7 +197,7 @@ export default function GameBoard({
         </div>
         {victory && (
           <>
-            {/* Confetti global, centralizado na tela toda */}
+            {/* Global confetti, centered on the whole screen */}
             <div className="fixed inset-0 flex items-center justify-center pointer-events-none z-[999]">
               <ConfettiExplosion
                 force={0.7}

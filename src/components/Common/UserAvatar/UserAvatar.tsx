@@ -21,6 +21,7 @@ export default function UserAvatar({
     />
   ) : (
     <FiUser
+      data-testid="user-avatar-fallback"
       size={28}
       className={`text-cyan-400 bg-cyan-900 rounded-full p-1 border-2 border-cyan-400 shadow w-7 h-7 ${className}`}
     />

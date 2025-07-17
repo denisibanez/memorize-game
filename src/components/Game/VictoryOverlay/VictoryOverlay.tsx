@@ -2,7 +2,7 @@ import React from "react";
 import { FaTrophy } from "react-icons/fa";
 import { FiRefreshCw, FiBarChart2 } from "react-icons/fi";
 
-interface VictoryOverlayProps {
+export interface VictoryOverlayProps {
   open: boolean;
   time?: number | null;
   onRestart: () => void;

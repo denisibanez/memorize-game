@@ -2,10 +2,11 @@
 import React, { useEffect, useState } from "react";
 import { useSession, signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import GameBoard from "../../components/Game/GameBoard";
-import HighScoresModal from "../../components/Scores/HighScoresModal";
-import Header from "../../components/Common/Header";
-import GameMenu from "../../components/Common/GameMenu";
+import GameBoard from "@/components/Game/GameBoard";
+import HighScoresModal from "@/components/Scores/HighScoresModal/HighScoresModal";
+import Header from "@/components/Common/Header/Header";
+import GameMenu from "@/components/Common/GameMenu/GameMenu";
+import MemorizerLoading from "@/components/Common/MemorizerLoading/MemorizerLoading";
 
 export default function GamePage() {
   const { status, data } = useSession();
@@ -23,7 +24,7 @@ export default function GamePage() {
   if (status === "loading") {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        Carregando...
+        <MemorizerLoading />
       </div>
     );
   }
@@ -43,7 +44,7 @@ export default function GamePage() {
         <main className="flex flex-col items-center justify-center flex-1 w-full pb-16">
           <div className="w-full">
             <GameBoard showScores={showScores} setShowScores={setShowScores} />
-            {/* Menu após o conteúdo dos cards até lg */}
+            {/* Menu after the card content up to lg */}
             <div className="lg:hidden">
               <GameMenu
                 onNewGame={() => window.location.reload()}

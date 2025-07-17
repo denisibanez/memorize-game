@@ -11,7 +11,11 @@ interface CardProps {
 
 export default function Card({ image, flipped, matched, onClick }: CardProps) {
   return (
-    <div
+    <button
+      type="button"
+      role="button"
+      tabIndex={0}
+      aria-label="Memory Card"
       className={`md:h-24 md:w-32
         [@media(min-width:320px)]:h-16
         [@media(min-width:390px)]:h-24
@@ -22,6 +26,7 @@ export default function Card({ image, flipped, matched, onClick }: CardProps) {
       onClick={() => {
         if (!flipped && !matched) onClick();
       }}
+      disabled={flipped || matched}
     >
       <div
         className={`relative w-full h-full transition-transform duration-300 ${
@@ -29,7 +34,7 @@ export default function Card({ image, flipped, matched, onClick }: CardProps) {
         }`}
         style={{ transformStyle: "preserve-3d" }}
       >
-        {/* Frente (imagem) */}
+        {/* Front (image) */}
         <div
           className={`absolute w-full h-full backface-hidden rounded-md overflow-hidden border bg-[#23243a] flex items-center justify-center ${matched ? "border-purple-400" : "border-cyan-400"}`}
           style={{ transform: "rotateY(180deg)" }}
@@ -42,7 +47,7 @@ export default function Card({ image, flipped, matched, onClick }: CardProps) {
             className="object-cover w-full h-full rounded-md p-1"
           />
         </div>
-        {/* Verso */}
+        {/* Back */}
         <div
           className={`absolute w-full h-full backface-hidden rounded-md bg-[#18192a] border flex items-center justify-center hover:border-cyan-300 transition-colors ${matched ? "border-purple-400" : "border-cyan-400"}`}
         >
@@ -76,6 +81,6 @@ export default function Card({ image, flipped, matched, onClick }: CardProps) {
           </svg>
         </div>
       </div>
-    </div>
+    </button>
   );
 }

@@ -2,7 +2,7 @@
 import React, { useEffect } from "react";
 import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import MemorizerTitle from "../components/Common/MemorizerTitle";
+import MemorizerTitle from "@/components/Common/MemorizerTitle/MemorizerTitle";
 
 export default function LoginPage() {
   const { status } = useSession();
