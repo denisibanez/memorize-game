@@ -85,8 +85,8 @@ src/
 
 ## 👤 Author
 
-- **Your Name**
-- [LinkedIn](https://www.linkedin.com/)
+- **Denis Ibanez**
+- [LinkedIn]([https://www.linkedin.com/](https://www.linkedin.com/in/denis-ibanez/))
 
 ---
 
